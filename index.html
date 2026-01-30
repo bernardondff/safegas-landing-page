@@ -10,10 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/logo.png">
     
     <script>
         tailwind.config = {
@@ -224,19 +223,11 @@
                 
                 <form action="https://formspree.io/f/xpqrobqq" method="POST" class="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
                     <input type="email" name="email" placeholder="Seu melhor e-mail corporativo" class="flex-1 p-5 rounded-2xl text-slate-900 outline-none focus:ring-4 ring-blue-300 transition-all font-medium" required>
-    
+                    
                     <button type="submit" class="bg-slate-900 text-white px-8 py-5 rounded-2xl font-bold hover:bg-black transition shadow-lg uppercase tracking-wide">
                         Quero participar
                     </button>
                 </form>
-            </div>
-
-            <div id="success-msg" class="hidden relative z-10 flex flex-col items-center justify-center py-10 animate-pulse">
-                <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-6 backdrop-blur-sm">
-                    <i class="fas fa-check text-4xl text-white"></i>
-                </div>
-                <h2 class="text-4xl font-bold mb-2">Sucesso!</h2>
-                <p class="text-blue-100 text-lg">Entraremos em contato em breve.</p>
             </div>
         </div>
     </section>
@@ -284,26 +275,6 @@
             }
         });
 
-        // Lógica do Formulário (Simulação)
-        document.getElementById('safe-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('email-input').value;
-            
-            // Aqui futuramente entra o código do Firebase
-            console.log("Lead capturado:", email);
-
-            // Animação de sucesso
-            const content = document.getElementById('form-content');
-            const msg = document.getElementById('success-msg');
-            
-            content.style.opacity = '0';
-            content.style.transform = 'translateY(-20px)';
-            
-            setTimeout(() => {
-                content.classList.add('hidden');
-                msg.classList.remove('hidden');
-            }, 300);
-        });
     </script>
 </body>
 </html>
