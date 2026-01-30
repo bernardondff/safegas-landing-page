@@ -11,8 +11,16 @@
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/logo.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/logo.png">
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Inicializa com sua Public Key
+            emailjs.init("3ArR1LQPUwxggwobL");
+        })();
+    </script>
     
     <script>
         tailwind.config = {
@@ -221,13 +229,22 @@
                     Estamos selecionando parceiros em Florianópolis para o programa piloto. Garanta sua vaga.
                 </p>
                 
-                <form action="https://formspree.io/f/xpqrobqq" method="POST" class="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
-                    <input type="email" name="email" placeholder="Seu melhor e-mail corporativo" class="flex-1 p-5 rounded-2xl text-slate-900 outline-none focus:ring-4 ring-blue-300 transition-all font-medium" required>
+                <form id="contact-form" class="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
+                    <input type="email" name="email" id="user_email" placeholder="Seu melhor e-mail corporativo" class="flex-1 p-5 rounded-2xl text-slate-900 outline-none focus:ring-4 ring-blue-300 transition-all font-medium" required>
                     
-                    <button type="submit" class="bg-slate-900 text-white px-8 py-5 rounded-2xl font-bold hover:bg-black transition shadow-lg uppercase tracking-wide">
-                        Quero participar
+                    <button type="submit" id="button-submit" class="bg-slate-900 text-white px-8 py-5 rounded-2xl font-bold hover:bg-black transition shadow-lg uppercase tracking-wide">
+                        <span id="btn-text">Quero participar</span>
+                        <i class="fas fa-spinner fa-spin hidden" id="btn-loader"></i>
                     </button>
                 </form>
+            </div>
+
+            <div id="success-msg" class="hidden relative z-10 flex flex-col items-center justify-center py-10 animate-pulse">
+                <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-6 backdrop-blur-sm">
+                    <i class="fas fa-check text-4xl text-white"></i>
+                </div>
+                <h2 class="text-4xl font-bold mb-2">Sucesso!</h2>
+                <p class="text-blue-100 text-lg">Verifique seu e-mail para mais detalhes.</p>
             </div>
         </div>
     </section>
@@ -275,6 +292,46 @@
             }
         });
 
+        // --- LÓGICA DO EMAILJS ---
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o recarregamento da página
+
+            const btn = document.getElementById('button-submit');
+            const btnText = document.getElementById('btn-text');
+            const loader = document.getElementById('btn-loader');
+            
+            // Efeito de "Enviando..."
+            btnText.textContent = 'Enviando...';
+            loader.classList.remove('hidden');
+            btn.disabled = true;
+
+            // Parâmetros para enviar (deve bater com o modelo do EmailJS)
+            emailjs.sendForm('service_y9oncx8', 'template_zlkfv0g', this)
+                .then(function() {
+                    console.log('SUCESSO!');
+                    
+                    // Animação de Sucesso
+                    const content = document.getElementById('form-content');
+                    const msg = document.getElementById('success-msg');
+                    
+                    content.style.opacity = '0';
+                    content.style.transform = 'translateY(-20px)';
+                    
+                    setTimeout(() => {
+                        content.classList.add('hidden');
+                        msg.classList.remove('hidden');
+                    }, 300);
+
+                }, function(error) {
+                    console.log('FALHA...', error);
+                    alert('Ocorreu um erro ao enviar. Tente novamente ou chame no Insta!');
+                    
+                    // Reseta botão
+                    btnText.textContent = 'Quero participar';
+                    loader.classList.add('hidden');
+                    btn.disabled = false;
+                });
+        });
     </script>
 </body>
 </html>
