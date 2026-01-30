@@ -81,5 +81,5 @@ Fase 4: Integração do Hardware (ESP32) com a API.
 👨‍💻 Autor
 Bernardo Nunes Estudante de Engenharia de Controle e Automação - UFSC Consultor na AutoJun
 
-<p align="center"> Desenvolvido com 💙 em Florianópolis - SC </p>
+              Desenvolvido com 💙 em Florianópolis - SC 
 
