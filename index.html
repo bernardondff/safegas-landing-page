@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafeGas Monitor — Antecipando o invisível</title>
+  <meta name="description" content="Monitoramento inteligente de gás GLP em tempo real. Sensores IoT + alertas no celular + dashboard na nuvem. Piloto em Florianópolis." />
+  <meta property="og:title" content="SafeGas Monitor — Antecipando o invisível" />
+  <meta property="og:description" content="Monitoramento inteligente de gás GLP em tempo real. Sensores IoT + alertas no celular." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV
+       ============================================================ -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-icon">🔵</div>
+          SafeGas
+        </a>
+        <ul class="nav-links">
+          <li><a href="#problema">Problema</a></li>
+          <li><a href="#solucao">Solução</a></li>
+          <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="#piloto" class="nav-cta">Ser parceiro piloto</a></li>
+        </ul>
+        <button class="nav-mobile-btn" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-inner">
+
+        <!-- Copy -->
+        <div class="hero-copy">
+          <div class="hero-badge reveal">
+            <span class="hero-badge-dot"></span>
+            Piloto ativo em Florianópolis
+          </div>
+
+          <h1 class="display-xl hero-title reveal reveal-delay-1">
+            Antecipando<br>
+            <span class="gradient-cyan">o invisível.</span>
+          </h1>
+
+          <p class="body-lg hero-subtitle reveal reveal-delay-2">
+            Monitoramento inteligente de gás GLP em tempo real.
+            Sensores IoT + nuvem + alertas no celular —
+            antes que o perigo se torne tragédia.
+          </p>
+
+          <div class="hero-actions reveal reveal-delay-3">
+            <a href="#piloto" class="btn-primary">
+              Quero ser parceiro piloto
+              <span>→</span>
+            </a>
+            <a href="#solucao" class="btn-ghost">
+              Como funciona
+            </a>
+          </div>
+        </div>
+
+        <!-- Dashboard mockup -->
+        <div class="hero-mockup reveal reveal-delay-2">
+
+          <!-- Floating WiFi badge -->
+          <div class="wifi-float">
+            <span style="font-size:1.2rem">📡</span>
+            <div class="wifi-text">
+              <strong>ESP32 Online</strong>
+              <span>Sinal Wi-Fi: –68 dBm</span>
+            </div>
+          </div>
+
+          <!-- Main card -->
+          <div class="dashboard-card">
+            <div class="dashboard-header">
+              <span class="dashboard-title">SafeGas Monitor — Cozinha</span>
+              <div class="status-badge">
+                <span class="status-dot"></span>
+                Normal
+              </div>
+            </div>
+
+            <div class="sensor-grid">
+              <div class="sensor-item">
+                <div class="sensor-label">Concentração GLP</div>
+                <div class="sensor-value sensor-safe">
+                  <span id="sensor-ppm">12.4</span>
+                  <span class="sensor-unit"> ppm</span>
+                </div>
+              </div>
+              <div class="sensor-item">
+                <div class="sensor-label">Temperatura</div>
+                <div class="sensor-value" style="color:var(--cyan)">
+                  <span id="sensor-temp">24.7</span>
+                  <span class="sensor-unit"> °C</span>
+                </div>
+              </div>
+              <div class="sensor-item">
+                <div class="sensor-label">Bateria backup</div>
+                <div class="sensor-value sensor-safe">
+                  <span id="sensor-bat">92</span>
+                  <span class="sensor-unit"> %</span>
+                </div>
+              </div>
+              <div class="sensor-item">
+                <div class="sensor-label">Última leitura</div>
+                <div class="sensor-value" style="font-size:1rem; color:var(--text-secondary); padding-top:0.25rem">
+                  há 3 seg.
+                </div>
+              </div>
+            </div>
+
+            <div class="waveform-label">Leituras dos últimos 60 segundos</div>
+            <div class="waveform">
+              <svg viewBox="0 0 440 48" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="waveGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.6"/>
+                    <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path id="wave-path"
+                  d="M 0 24 L 440 24"
+                  fill="none"
+                  stroke="var(--cyan)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Floating alert -->
+          <div class="alert-float">
+            <span class="alert-icon">🚨</span>
+            <div class="alert-text">
+              <strong>Alerta simulado — 350 ppm</strong>
+              <span>Notificação enviada para o app</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROBLEMA
+       ============================================================ -->
+  <section class="section problema" id="problema">
+    <div class="container">
+      <div class="problema-inner">
+
+        <div>
+          <div class="section-label reveal">O problema</div>
+          <h2 class="display-lg reveal reveal-delay-1">
+            GLP vaza em silêncio.
+            <span class="gradient-orange">Estatísticas falam.</span>
+          </h2>
+          <p class="body-lg reveal reveal-delay-2" style="color: var(--text-secondary); margin-top: 1.25rem; max-width: 460px;">
+            O gás GLP é inodoro em sua forma pura e incolor —
+            detecção humana falhará sempre. Os números mostram
+            a gravidade do problema no Brasil.
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card accent-red reveal reveal-delay-1">
+            <div class="stat-number"
+              data-target="25000"
+              data-suffix="">0</div>
+            <p class="stat-desc">acidentes com GLP registrados por ano no Brasil</p>
+            <p class="stat-source">Fonte: CBMERJ / ABRAGÁS, 2023</p>
+          </div>
+          <div class="stat-card accent-orange reveal reveal-delay-2">
+            <div class="stat-number"
+              data-target="80"
+              data-suffix="%">0%</div>
+            <p class="stat-desc">dos acidentes ocorrem em residências ou restaurantes</p>
+            <p class="stat-source">Fonte: IBGE / Corpo de Bombeiros</p>
+          </div>
+          <div class="stat-card reveal reveal-delay-3">
+            <div class="stat-number"
+              data-target="4"
+              data-suffix=" min">0 min</div>
+            <p class="stat-desc">é o tempo médio para atingir concentração explosiva em ambiente fechado</p>
+            <p class="stat-source">Fonte: NFPA 58</p>
+          </div>
+          <div class="stat-card reveal reveal-delay-4">
+            <div class="stat-number"
+              data-target="97"
+              data-suffix="%">0%</div>
+            <p class="stat-desc">dos locais não possuem detector automático de gás instalado</p>
+            <p class="stat-source">Pesquisa SafeGas, 2024</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SOLUÇÃO
+       ============================================================ -->
+  <section class="section solucao" id="solucao">
+    <div class="container">
+      <div class="solucao-header reveal">
+        <div class="section-label">Como funciona</div>
+        <h2 class="display-lg">
+          Hardware → Nuvem → <span class="gradient-cyan">Você avisado.</span>
+        </h2>
+        <p>
+          Três camadas integradas que trabalham juntas 24/7,
+          sem depender da sua presença.
+        </p>
+      </div>
+
+      <div class="flow-grid">
+
+        <div class="flow-step reveal reveal-delay-1">
+          <div class="flow-icon-wrap hardware">🔧</div>
+          <h3>Hardware IoT</h3>
+          <p>
+            Sensor MQ-6 de alta sensibilidade detecta concentrações a partir
+            de 100 ppm. Microcontrolador ESP32 processa e envia dados
+            continuamente via Wi-Fi.
+          </p>
+          <div class="flow-detail">
+            <span class="tag">ESP32</span>
+            <span class="tag">MQ-6</span>
+            <span class="tag">DHT22</span>
+            <span class="tag">Bateria backup</span>
+          </div>
+        </div>
+
+        <div class="flow-step reveal reveal-delay-2">
+          <div class="flow-icon-wrap cloud">☁️</div>
+          <h3>Nuvem em tempo real</h3>
+          <p>
+            Dados chegam ao Firebase em milissegundos.
+            Regras de alerta são processadas na nuvem —
+            disponíveis em qualquer dispositivo.
+          </p>
+          <div class="flow-detail">
+            <span class="tag">Firebase</span>
+            <span class="tag">Realtime DB</span>
+            <span class="tag">Cloud Functions</span>
+            <span class="tag">HTTPS</span>
+          </div>
+        </div>
+
+        <div class="flow-step reveal reveal-delay-3">
+          <div class="flow-icon-wrap app">📱</div>
+          <h3>Alerta no celular</h3>
+          <p>
+            Push notification instantâneo quando qualquer leitura
+            ultrapassa o limiar seguro. Dashboard com histórico,
+            gráficos e relatórios.
+          </p>
+          <div class="flow-detail">
+            <span class="tag">Push notification</span>
+            <span class="tag">App iOS & Android</span>
+            <span class="tag">Dashboard web</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DIFERENCIAIS
+       ============================================================ -->
+  <section class="section diferenciais" id="diferenciais">
+    <div class="container">
+      <div class="diferenciais-header reveal">
+        <div class="section-label">Comparativo</div>
+        <h2 class="display-lg">
+          Tudo que falta na <span class="gradient-orange">concorrência.</span>
+        </h2>
+        <p>Não somos mais um detector de gás. Somos uma plataforma de monitoramento.</p>
+      </div>
+
+      <div class="compare-table-wrap reveal reveal-delay-1">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Funcionalidade</th>
+              <th class="col-safegas-head">SafeGas Monitor</th>
+              <th>Detector convencional</th>
+              <th>App concorrente</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Alerta em tempo real</td>
+              <td class="col-safegas"><span class="check">✓</span></td>
+              <td><span class="check">✓</span> (sonoro)</td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Notificação no celular</td>
+              <td class="col-safegas"><span class="check">✓</span></td>
+              <td><span class="cross">—</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Dashboard com histórico</td>
+              <td class="col-safegas"><span class="check">✓</span></td>
+              <td><span class="cross">—</span></td>
+              <td><span class="partial">Parcial</span></td>
+            </tr>
+            <tr>
+              <td>Alerta remoto (fora de casa)</td>
+              <td class="col-safegas"><span class="check">✓</span></td>
+              <td><span class="cross">—</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Bateria de backup</td>
+              <td class="col-safegas"><span class="check">✓</span></td>
+              <td><span class="partial">Alguns</span></td>
+              <td><span class="cross">—</span></td>
+            </tr>
+            <tr>
+              <td>Temperatura e umidade</td>
+              <td class="col-safegas"><span class="check">✓</span></td>
+              <td><span class="cross">—</span></td>
+              <td><span class="cross">—</span></td>
+            </tr>
+            <tr>
+              <td>API para integração externa</td>
+              <td class="col-safegas"><span class="check">✓</span></td>
+              <td><span class="cross">—</span></td>
+              <td><span class="partial">Parcial</span></td>
+            </tr>
+            <tr>
+              <td>Custo mensal</td>
+              <td class="col-safegas" style="color: var(--green); font-weight: 600;">Gratuito no piloto</td>
+              <td>Produto único</td>
+              <td>R$ 29–99/mês</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PARCEIROS PILOTO
+       ============================================================ -->
+  <section class="section piloto" id="piloto">
+    <div class="container">
+      <div class="piloto-inner">
+
+        <!-- Info -->
+        <div class="piloto-info">
+          <div class="section-label reveal">Parceiro piloto</div>
+          <h2 class="display-lg reveal reveal-delay-1">
+            Florianópolis.
+            <span class="gradient-cyan">Vagas limitadas.</span>
+          </h2>
+          <p class="reveal reveal-delay-2">
+            Estamos selecionando restaurantes, padarias, lanchonetes e
+            residências em Florianópolis para o programa piloto gratuito.
+            Você recebe o hardware instalado e acesso completo à plataforma
+            — sem custo durante o período de teste.
+          </p>
+
+          <ul class="benefits-list reveal reveal-delay-3">
+            <li>
+              <div class="benefit-check">✓</div>
+              <span><strong style="color:var(--text-primary)">Hardware gratuito</strong> — sensor + ESP32 instalado pela equipe SafeGas</span>
+            </li>
+            <li>
+              <div class="benefit-check">✓</div>
+              <span><strong style="color:var(--text-primary)">Plataforma completa</strong> — dashboard + app + alertas por 3 meses sem custo</span>
+            </li>
+            <li>
+              <div class="benefit-check">✓</div>
+              <span><strong style="color:var(--text-primary)">Suporte direto</strong> — WhatsApp com a equipe técnica durante o piloto</span>
+            </li>
+            <li>
+              <div class="benefit-check">✓</div>
+              <span><strong style="color:var(--text-primary)">Prioridade no lançamento</strong> — condições especiais para parceiros que virarem clientes</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Form -->
+        <div class="form-card reveal reveal-delay-2">
+          <h3>Quero participar do piloto</h3>
+          <p class="form-sub">Preencha o formulário e entraremos em contato em até 48h.</p>
+
+          <!--
+            IMPORTANTE: substitua o action abaixo pelo seu endpoint do Formspree.
+            1. Acesse formspree.io e crie uma conta com contato.safegas@gmail.com
+            2. Crie um novo form e copie o endpoint (ex: https://formspree.io/f/xyzabcde)
+            3. Cole no atributo action abaixo
+          -->
+          <form
+            id="pilot-form"
+            action="https://formspree.io/f/xpqrobqq"
+            method="POST"
+          >
+            <!-- Campo oculto para identificar a origem no Formspree -->
+            <input type="hidden" name="_subject" value="[SafeGas] Novo interesse no piloto — Florianópolis" />
+            <input type="hidden" name="_language" value="pt" />
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="nome">Nome completo *</label>
+                <input
+                  id="nome"
+                  type="text"
+                  name="nome"
+                  class="form-input"
+                  placeholder="Seu nome"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="whatsapp">WhatsApp *</label>
+                <input
+                  id="whatsapp"
+                  type="tel"
+                  name="whatsapp"
+                  class="form-input"
+                  placeholder="(48) 9 0000-0000"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">E-mail *</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                class="form-input"
+                placeholder="seu@email.com"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="tipo">Tipo de local *</label>
+              <select id="tipo" name="tipo" class="form-select" required>
+                <option value="" disabled selected>Selecione...</option>
+                <option value="Restaurante">Restaurante</option>
+                <option value="Padaria / Confeitaria">Padaria / Confeitaria</option>
+                <option value="Lanchonete / Fast food">Lanchonete / Fast food</option>
+                <option value="Residência">Residência</option>
+                <option value="Outro estabelecimento comercial">Outro estabelecimento comercial</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="bairro">Bairro em Florianópolis</label>
+              <input
+                id="bairro"
+                type="text"
+                name="bairro"
+                class="form-input"
+                placeholder="Ex: Trindade, Centro, Lagoa..."
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="mensagem">Algo que queira nos contar? (opcional)</label>
+              <textarea
+                id="mensagem"
+                name="mensagem"
+                class="form-textarea"
+                placeholder="Quantos botijões usam, frequência de troca, alguma preocupação específica..."
+              ></textarea>
+            </div>
+
+            <button type="submit" id="submit-btn" class="btn-submit">
+              Quero ser parceiro piloto →
+            </button>
+
+            <p class="form-privacy">
+              🔒 Seus dados ficam guardados com segurança e são usados
+              apenas para entrar em contato sobre o programa piloto.
+            </p>
+          </form>
+
+          <!-- Mensagem de sucesso -->
+          <div id="form-success" class="form-success">
+            <div class="form-success-icon">✅</div>
+            <h4>Cadastro recebido!</h4>
+            <p>
+              Entraremos em contato pelo WhatsApp ou e-mail
+              que você informou em até <strong>48 horas</strong>.<br><br>
+              Obrigado por acreditar no SafeGas Monitor.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTATO
+       ============================================================ -->
+  <section class="section contato" id="contato">
+    <div class="container">
+      <div class="contato-inner">
+
+        <div class="contato-info">
+          <div class="section-label reveal">Contato</div>
+          <h2 class="display-md reveal reveal-delay-1">
+            Vamos conversar<br>sobre segurança.
+          </h2>
+          <p class="reveal reveal-delay-2">
+            Dúvidas sobre o projeto, parcerias comerciais ou imprensa —
+            estamos disponíveis por e-mail e Instagram.
+          </p>
+
+          <div class="contact-links reveal reveal-delay-3">
+            <a href="mailto:contato.safegas@gmail.com" class="contact-link link-email">
+              <div class="contact-link-icon">✉️</div>
+              <div class="contact-link-info">
+                <strong>contato.safegas@gmail.com</strong>
+                <span>Resposta em até 24h</span>
+              </div>
+            </a>
+            <a href="https://instagram.com/safegas.monitor" target="_blank" rel="noopener" class="contact-link link-instagram">
+              <div class="contact-link-icon">📸</div>
+              <div class="contact-link-info">
+                <strong>@safegas.monitor</strong>
+                <span>Instagram — atualizações do projeto</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="contato-visual reveal reveal-delay-2">
+          <div class="location-card">
+            <div class="location-header">
+              <span>📍</span>
+              <h4>Piloto — Florianópolis, SC</h4>
+            </div>
+            <p class="location-desc">
+              Estamos com operação ativa na Grande Florianópolis.
+              Bairros como Trindade, Centro, Lagoa da Conceição,
+              Ingleses e Jurerê estão dentro da área de cobertura
+              do programa piloto.
+            </p>
+            <div class="location-tags">
+              <span class="tag">Trindade</span>
+              <span class="tag">Centro</span>
+              <span class="tag">Lagoa</span>
+              <span class="tag">Ingleses</span>
+              <span class="tag">Jurerê</span>
+              <span class="tag">+ toda a ilha</span>
+            </div>
+          </div>
+
+          <div class="location-card" style="background: rgba(0,212,255,0.04); border-color: rgba(0,212,255,0.15);">
+            <div class="location-header">
+              <span>🎓</span>
+              <h4>Projeto acadêmico + startup</h4>
+            </div>
+            <p class="location-desc">
+              O SafeGas Monitor é desenvolvido por engenheiros com
+              raízes em Florianópolis, combinando pesquisa acadêmica
+              em IoT com produto real validado em campo.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-copy">
+          © 2025 SafeGas Monitor. Todos os direitos reservados.
+          Desenvolvido em Florianópolis — SC.
+        </p>
+        <ul class="footer-links">
+          <li><a href="mailto:contato.safegas@gmail.com">Contato</a></li>
+          <li><a href="https://instagram.com/safegas.monitor" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#piloto">Ser parceiro</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
